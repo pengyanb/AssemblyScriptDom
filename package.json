@@ -1,0 +1,29 @@
+{
+  "name": "assemblyscript-dom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests",
+    "build:debug": "asc src/index.ts --target debug",
+    "build:release": "asc src/index.ts --target release",
+    "build": "npm run build:debug && npm run build:release",
+    "start": "npx serve ."
+  },
+  "author": "Peng Yanbing <info@implicitcast.com> (http://implicitcast.com/)",
+  "license": "ISC",
+  "devDependencies": {
+    "assemblyscript": "^0.20.16"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  },
+  "dependencies": {
+    "@assemblyscript/loader": "^0.20.16",
+    "asdom": "^0.2.2"
+  }
+}

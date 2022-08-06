@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module">
+      import { instantiate } from "./node_modules/@assemblyscript/loader/index.js";
+      import { Asdom } from "./node_modules/asdom/glue/index.js";
+      const asdom = new Asdom();
+      console.log("!!!asdom: ", asdom);
+      WebAssembly.compileStreaming(fetch("./dist/debug.wasm")).then(
+        (module) => {
+          instantiate(module, { ...asdom.wasmImports }).then(({ exports }) => {
+            console.log("!!!exports: ", exports);
+            asdom.wasmExports = exports;
+            exports.bootstrap();
+          });
+        }
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
